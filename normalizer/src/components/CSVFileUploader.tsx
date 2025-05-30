@@ -44,7 +44,7 @@ export function CSVFileUploader({ label, onData }: CSVFileUploaderProps) {
       {fileName && fileContent.length > 0 && (
         <div className="flex-1 min-h-0 overflow-auto border border-gray-200 rounded-md">
           <table className="w-full divide-y divide-gray-200">
-            <thead className="sticky top-0">
+            <thead>
               <tr>
                 {headers.map((header, index) => (
                   <th key={index} className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">
