@@ -3,15 +3,24 @@ import './App.css'
 import { LocalJsonUploader } from './components/LocalJsonUploader'
 import { CSVFileUploader } from './components/CSVFileUploader'
 import { SubscaleConfiguration } from './components/SubscaleConfiguration'
+import { UserProfile } from './components/UserProfile'
 
 function App() {
   const [range, setRange] = useState({ start: '', end: '' });
   const [method, setMethod] = useState('sum');
+  const [age, setAge] = useState('');
+  const [sex, setSex] = useState<string | undefined>(undefined);
 
   const handleRangeChange = (field: 'start' | 'end', value: string) => {
     // Only allow integers
     const intValue = value === '' ? '' : Math.floor(Number(value)).toString();
     setRange(prev => ({ ...prev, [field]: intValue }));
+  };
+
+  const handleAgeChange = (value: string) => {
+    // Only allow integers
+    const intValue = value === '' ? '' : Math.floor(Number(value)).toString();
+    setAge(intValue);
   };
 
   return (
@@ -32,11 +41,12 @@ function App() {
             onRangeChange={handleRangeChange}
             onMethodChange={setMethod}
           />
-          <div className="border border-gray-300 h-1/3 p-4">
-            <p className="text-base font-bold underline">
-              User profile
-            </p>
-          </div>
+          <UserProfile
+            age={age}
+            sex={sex}
+            onAgeChange={handleAgeChange}
+            onSexChange={setSex}
+          />
           <div className="border border-gray-300 h-1/3 p-4">
             <button>
               <p className="text-base font-bold underline">
