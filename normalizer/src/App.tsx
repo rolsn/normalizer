@@ -10,6 +10,9 @@ function App() {
   const [method, setMethod] = useState('sum');
   const [age, setAge] = useState('');
   const [sex, setSex] = useState<string | undefined>(undefined);
+  const [normalizationTable, setNormalizationTable] = useState<any[]>([]);
+  const [questions, setQuestions] = useState<any>(null);
+  const [answers, setAnswers] = useState<any>(null);
 
   const handleRangeChange = (field: 'start' | 'end', value: string) => {
     // Only allow integers
@@ -31,7 +34,7 @@ function App() {
             Normalization table
           </p>
           <div className="flex flex-col gap-4">
-            <CSVFileUploader onData={() => {}} />
+            <CSVFileUploader onData={setNormalizationTable} />
           </div>
         </div>
         <div className="w-1/2 h-full flex flex-col gap-4">
@@ -62,7 +65,7 @@ function App() {
             Questions
           </p>
           <div className="flex flex-col gap-4">
-            <LocalJsonUploader onData={() => {}} />
+            <LocalJsonUploader onData={setQuestions} />
           </div>
         </div>
         <div className="border border-gray-300 w-1/2 h-full p-4">
@@ -70,7 +73,7 @@ function App() {
             Answers
           </p>
           <div className="flex flex-col gap-4">
-            <LocalJsonUploader onData={() => {}} />
+            <LocalJsonUploader onData={setAnswers} />
           </div>
         </div>
       </div>
