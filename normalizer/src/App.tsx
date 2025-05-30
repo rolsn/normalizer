@@ -27,17 +27,18 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col p-4 gap-4 w-[80vw] h-full min-h-screen mx-auto">
-      <div id="configuration" className="flex h-[50vh] w-full gap-4">
-        <div className="border border-gray-300 w-1/2 h-full p-4 flex flex-col">
-          <p className="text-base font-bold underline">
+    <div className="flex flex-col px-4 pb-4 gap-4 w-[80vw] min-h-[800px] mx-auto">
+      <h1>Normalizer</h1>
+      <div id="configuration" className="flex flex-col md:flex-row h-auto md:h-[400px] w-full gap-4">
+        <div className="border border-gray-300 w-full md:w-1/2 h-[400px] p-4 flex flex-col min-h-0">
+          <p className="text-base font-bold underline mb-4">
             Normalization table
           </p>
           <div className="flex-1 min-h-0">
             <CSVFileUploader onData={setNormalizationTable} />
           </div>
         </div>
-        <div className="w-1/2 h-full flex flex-col gap-4">
+        <div className="w-full md:w-1/2 h-[400px] flex flex-col gap-4 min-h-0">
           <SubscaleConfiguration
             range={range}
             method={method}
@@ -50,7 +51,7 @@ function App() {
             onAgeChange={handleAgeChange}
             onSexChange={setSex}
           />
-          <div className="border border-gray-300 flex-1 p-4 flex flex-col">
+          <div className="border border-gray-300 flex-1 p-4 flex flex-col min-h-0">
             <button className="flex-1">
               <p className="text-base font-bold underline">
                 Calculate subscale
@@ -59,20 +60,20 @@ function App() {
           </div>
         </div>
       </div>
-      <div id="structure" className="flex h-1/2 w-full gap-4">
-        <div className="border border-gray-300 w-1/2 h-full p-4">
-          <p className="text-base font-bold underline">
+      <div id="structure" className="flex flex-col md:flex-row h-auto md:h-[400px] w-full gap-4">
+        <div className="border border-gray-300 w-full md:w-1/2 h-[400px] p-4 flex flex-col">
+          <p className="text-base font-bold underline mb-4">
             Questions
           </p>
-          <div className="flex flex-col gap-4">
+          <div className="flex-1 min-h-0">
             <LocalJsonUploader onData={setQuestions} />
           </div>
         </div>
-        <div className="border border-gray-300 w-1/2 h-full p-4">
-          <p className="text-base font-bold underline">
+        <div className="border border-gray-300 w-full md:w-1/2 h-[400px] p-4 flex flex-col">
+          <p className="text-base font-bold underline mb-4">
             Answers
           </p>
-          <div className="flex flex-col gap-4">
+          <div className="flex-1 min-h-0">
             <LocalJsonUploader onData={setAnswers} />
           </div>
         </div>
