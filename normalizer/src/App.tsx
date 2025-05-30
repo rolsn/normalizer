@@ -2,8 +2,18 @@ import { useState } from 'react'
 import './App.css'
 import { LocalJsonUploader } from './components/LocalJsonUploader'
 import { CSVFileUploader } from './components/CSVFileUploader'
+import { SubscaleConfiguration } from './components/SubscaleConfiguration'
 
 function App() {
+  const [range, setRange] = useState({ start: '', end: '' });
+  const [method, setMethod] = useState('sum');
+
+  const handleRangeChange = (field: 'start' | 'end', value: string) => {
+    // Only allow integers
+    const intValue = value === '' ? '' : Math.floor(Number(value)).toString();
+    setRange(prev => ({ ...prev, [field]: intValue }));
+  };
+
   return (
     <div className="flex flex-col p-4 gap-4 w-full h-full min-h-screen">
       <div id="configuration" className="flex h-1/2 w-full gap-4">
@@ -16,11 +26,12 @@ function App() {
           </div>
         </div>
         <div className="w-1/2 h-full flex flex-col gap-4">
-          <div className="border border-gray-300 h-1/3 p-4">
-            <p className="text-base font-bold underline">
-              Subscale configuration
-            </p>
-          </div>
+          <SubscaleConfiguration
+            range={range}
+            method={method}
+            onRangeChange={handleRangeChange}
+            onMethodChange={setMethod}
+          />
           <div className="border border-gray-300 h-1/3 p-4">
             <p className="text-base font-bold underline">
               User profile
@@ -58,3 +69,4 @@ function App() {
 }
 
 export default App
+
