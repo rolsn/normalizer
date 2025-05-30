@@ -1,0 +1,9 @@
+[
+  { "questionId": 1, "selectedOption": "C" },
+  { "questionId": 2, "selectedOption": "D" },
+  { "questionId": 3, "selectedOption": "B" },
+  { "questionId": 4, "selectedOption": "C" },
+  { "questionId": 5, "selectedOption": "B" },
+  { "questionId": 6, "selectedOption": "A" },
+  { "questionId": 7, "selectedOption": "D" }
+]
