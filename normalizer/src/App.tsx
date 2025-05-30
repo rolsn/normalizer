@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Papa from 'papaparse';
 import './App.css'
 
 function App() {
@@ -49,6 +50,36 @@ function App() {
     );
   }
 
+  function CSVFileUploader({ label, onData }: { label?: string, onData: (data: any) => void }) {
+    const handleFileChange = (e) => {
+      const file = e.target.files[0];
+      Papa.parse(file, {
+        header: true,
+        complete: (results) => {
+          onData(results.data);
+        },
+        error: () => alert('Invalid CSV file'),
+      });
+    };
+  
+    return (
+      <div>
+        {label && <label className="text-sm font-medium text-gray-700">{label}</label>}
+        <div className="relative">
+          <input 
+            type="file" 
+            accept=".csv" 
+            onChange={handleFileChange}
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+          />
+          <div className="p-2 m-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 text-center">
+            Select CSV file
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col p-4 gap-4 w-full h-full min-h-screen">
       <div id="configuration" className="flex h-1/2 w-full gap-4">
@@ -56,6 +87,9 @@ function App() {
           <p className="text-base font-bold underline">
             Normalization table
           </p>
+          <div className="flex flex-col gap-4">
+            <CSVFileUploader onData={() => {}} />
+          </div>
         </div>
         <div className="w-1/2 h-full flex flex-col gap-4">
           <div className="border border-gray-300 h-1/3 p-4">
