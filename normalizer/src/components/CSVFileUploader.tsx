@@ -28,7 +28,7 @@ export function CSVFileUploader({ label, onData }: CSVFileUploaderProps) {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 h-full">
       {label && <label className="text-sm font-medium text-gray-700">{label}</label>}
       <div className="relative">
         <input 
@@ -37,14 +37,14 @@ export function CSVFileUploader({ label, onData }: CSVFileUploaderProps) {
           onChange={handleFileChange}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
         />
-        <div className="p-2 m-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 text-center">
+        <div className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 text-center">
           Select CSV file
         </div>
       </div>
       {fileName && fileContent.length > 0 && (
-        <div className="overflow-auto max-h-48 m-2">
+        <div className="flex-1 min-h-0 overflow-auto border border-gray-200 rounded-md">
           <table className="w-full divide-y divide-gray-200">
-            <thead className="">
+            <thead className="sticky top-0 bg-white">
               <tr>
                 {headers.map((header, index) => (
                   <th key={index} className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">
@@ -53,7 +53,7 @@ export function CSVFileUploader({ label, onData }: CSVFileUploaderProps) {
                 ))}
               </tr>
             </thead>
-            <tbody className="">
+            <tbody className="divide-y divide-gray-200">
               {fileContent.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                   {headers.map((header, colIndex) => (

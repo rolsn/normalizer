@@ -50,8 +50,8 @@ function App() {
             onAgeChange={handleAgeChange}
             onSexChange={setSex}
           />
-          <div className="border border-gray-300 h-1/3 p-4">
-            <button>
+          <div className="border border-gray-300 flex-1 p-4 flex flex-col">
+            <button className="flex-1">
               <p className="text-base font-bold underline">
                 Calculate subscale
               </p>

@@ -12,11 +12,11 @@ export function UserProfile({
   onSexChange
 }: UserProfileProps) {
   return (
-    <div className="border border-gray-300 h-1/3 p-4">
+    <div className="border border-gray-300 flex-1 p-4 flex flex-col">
       <p className="text-base font-bold underline">
         User profile
       </p>
-      <div className="flex flex-col md:flex-row gap-4 mt-4">
+      <div className="flex flex-col md:flex-row gap-4 mt-4 flex-1">
         <div className="flex-1">
           <label className="block text-sm font-medium mb-2">Age</label>
           <input
