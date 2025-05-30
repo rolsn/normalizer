@@ -28,23 +28,23 @@ export function CSVFileUploader({ label, onData }: CSVFileUploaderProps) {
   };
 
   return (
-    <div className="flex flex-col gap-2 h-full">
-      {label && <label className="text-sm font-medium text-gray-700">{label}</label>}
-      <div className="relative">
+    <div className="flex flex-col h-full">
+      {label && <label className="text-sm font-medium text-gray-700 mb-2">{label}</label>}
+      <div className="relative mb-4">
         <input 
           type="file" 
           accept=".csv" 
           onChange={handleFileChange}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
         />
-        <div className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 text-center">
+        <div className="p-2 bg-blue-500 rounded-md hover:bg-blue-600 transition-colors duration-200 text-center mt-2">
           Select CSV file
         </div>
       </div>
       {fileName && fileContent.length > 0 && (
         <div className="flex-1 min-h-0 overflow-auto border border-gray-200 rounded-md">
           <table className="w-full divide-y divide-gray-200">
-            <thead className="sticky top-0 bg-white">
+            <thead className="sticky top-0">
               <tr>
                 {headers.map((header, index) => (
                   <th key={index} className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">

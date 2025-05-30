@@ -29,11 +29,11 @@ function App() {
   return (
     <div className="flex flex-col p-4 gap-4 w-[80vw] h-full min-h-screen mx-auto">
       <div id="configuration" className="flex h-[50vh] w-full gap-4">
-        <div className="border border-gray-300 w-1/2 h-full p-4">
+        <div className="border border-gray-300 w-1/2 h-full p-4 flex flex-col">
           <p className="text-base font-bold underline">
             Normalization table
           </p>
-          <div className="flex flex-col gap-4">
+          <div className="flex-1 min-h-0">
             <CSVFileUploader onData={setNormalizationTable} />
           </div>
         </div>
