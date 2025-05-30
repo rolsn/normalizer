@@ -44,20 +44,20 @@ export function CSVFileUploader({ label, onData }: CSVFileUploaderProps) {
       {fileName && fileContent.length > 0 && (
         <div className="overflow-auto max-h-48 m-2">
           <table className="w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+            <thead className="">
               <tr>
                 {headers.map((header, index) => (
-                  <th key={index} className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th key={index} className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">
                     {header}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="">
               {fileContent.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                   {headers.map((header, colIndex) => (
-                    <td key={colIndex} className="px-3 py-2 text-sm text-gray-500">
+                    <td key={colIndex} className="px-3 py-2 text-sm">
                       {row[header]}
                     </td>
                   ))}
