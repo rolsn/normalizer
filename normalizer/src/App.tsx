@@ -38,7 +38,7 @@ function App() {
             <CSVFileUploader onData={setNormalizationTable} />
           </div>
         </div>
-        <div className="w-full md:w-1/2 h-[400px] flex flex-col gap-4 min-h-0">
+        <div className="w-full md:w-1/2 h-[800px] md:h-[400px] flex flex-col gap-4 min-h-0">
           <SubscaleConfiguration
             range={range}
             method={method}
@@ -51,7 +51,7 @@ function App() {
             onAgeChange={handleAgeChange}
             onSexChange={setSex}
           />
-          <div className="border border-gray-300 flex-1 p-4 flex flex-col min-h-0">
+          <div className="border border-gray-300 h-[100px] p-4 flex flex-col min-h-0">
             <button className="flex-1">
               <p className="text-base font-bold underline">
                 Calculate subscale
