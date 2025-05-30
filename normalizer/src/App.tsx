@@ -27,8 +27,8 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col p-4 gap-4 w-full h-full min-h-screen">
-      <div id="configuration" className="flex h-1/2 w-full gap-4">
+    <div className="flex flex-col p-4 gap-4 w-[80vw] h-full min-h-screen mx-auto">
+      <div id="configuration" className="flex h-[50vh] w-full gap-4">
         <div className="border border-gray-300 w-1/2 h-full p-4">
           <p className="text-base font-bold underline">
             Normalization table

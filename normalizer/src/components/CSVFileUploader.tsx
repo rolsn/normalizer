@@ -42,8 +42,8 @@ export function CSVFileUploader({ label, onData }: CSVFileUploaderProps) {
         </div>
       </div>
       {fileName && fileContent.length > 0 && (
-        <div className="overflow-auto max-h-48">
-          <table className="min-w-full divide-y divide-gray-200">
+        <div className="overflow-auto max-h-48 m-2">
+          <table className="w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
                 {headers.map((header, index) => (
