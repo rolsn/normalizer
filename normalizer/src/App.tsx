@@ -72,7 +72,7 @@ function App() {
     }
 
     const total = scores.reduce((sum, score) => sum + score, 0);
-    const rawScore = method === 'sum' ? total : total / scores.length;
+    const rawScore = method === 'sum' ? total : Math.round(total / scores.length);
 
     // for simplicity, just find the exact combination. under different circumstances,
     // we would try to find the closest match.
@@ -86,7 +86,7 @@ function App() {
     console.log("Normalization row:", normalizedRow);
     
     if (!normalizedRow) {
-      alert('No exact normalization data found.');
+      alert(`No exact normalization data found. (Raw score: ${rawScore}.)`);
       return;
     }
     
