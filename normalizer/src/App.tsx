@@ -119,7 +119,7 @@ function App() {
           />
           <div className="border border-gray-300 h-[100px] p-4 flex flex-col min-h-0">
             <button 
-              className="flex-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200"
+              className="flex-1 bg-blue-500 rounded-md hover:bg-blue-600 transition-colors duration-200"
               onClick={calculateSubscale}
             >
               <p className="text-base font-bold">

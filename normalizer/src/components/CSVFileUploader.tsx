@@ -37,7 +37,7 @@ export function CSVFileUploader({ label, onData }: CSVFileUploaderProps) {
           onChange={handleFileChange}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
         />
-        <div className="p-2 bg-blue-500 rounded-md hover:bg-blue-600 transition-colors duration-200 text-center mt-2">
+        <div className="p-2 m-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 text-center">
           Select CSV file
         </div>
       </div>
