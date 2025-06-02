@@ -27,6 +27,26 @@ function App() {
     setAge(intValue);
   };
 
+  const calculateSubscale = () => {
+    if (!questions || !answers) {
+      alert('Questions and answers are required.');
+      return;
+    }
+
+    const start = parseInt(range.start);
+    const end = parseInt(range.end);
+
+    if (isNaN(start) || isNaN(end)) {
+      alert('Please enter valid start and end values');
+      return;
+    }
+
+    if (start > end) {
+      alert('Start value must be less than or equal to end value');
+      return;
+    }
+  };
+
   return (
     <div className="flex flex-col px-4 pb-4 gap-4 w-[80vw] min-h-[800px] mx-auto">
       <h1>Normalizer</h1>
@@ -53,8 +73,11 @@ function App() {
             onSexChange={setSex}
           />
           <div className="border border-gray-300 h-[100px] p-4 flex flex-col min-h-0">
-            <button className="flex-1">
-              <p className="text-base font-bold underline">
+            <button 
+              className="flex-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200"
+              onClick={calculateSubscale}
+            >
+              <p className="text-base font-bold">
                 Calculate subscale
               </p>
             </button>
@@ -69,7 +92,8 @@ function App() {
           <div className="flex-1 min-h-0">
             <LocalJsonUploader 
               expectedType="questions"
-              onData={setQuestions} 
+              onData={setQuestions}
+              range={range}
             />
           </div>
         </div>
@@ -80,7 +104,8 @@ function App() {
           <div className="flex-1 min-h-0">
             <LocalJsonUploader 
               expectedType="answers"
-              onData={setAnswers} 
+              onData={setAnswers}
+              range={range}
             />
           </div>
         </div>
@@ -90,4 +115,3 @@ function App() {
 }
 
 export default App
-

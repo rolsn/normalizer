@@ -1,20 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Question, Answer, QuestionsData, AnswersData } from '../types';
 
 type LocalJsonUploaderProps = {
   label?: string;
   expectedType: 'questions';
   onData: (data: QuestionsData) => void;
+  range?: { start: string; end: string };
 } | {
   label?: string;
   expectedType: 'answers';
   onData: (data: AnswersData) => void;
+  range?: { start: string; end: string };
 };
 
-export function LocalJsonUploader({ label, onData, expectedType }: LocalJsonUploaderProps) {
+export function LocalJsonUploader({ label, onData, expectedType, range }: LocalJsonUploaderProps) {
   const [fileName, setFileName] = useState<string | null>(null);
   const [fileContent, setFileContent] = useState<QuestionsData | AnswersData | null>(null);
+  const [rawContent, setRawContent] = useState<QuestionsData | AnswersData | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  /*
+   * Alters the questions based on the given range. This is not only visual; it modifies the data in-place.
+  */
+  useEffect(() => {
+    if (expectedType === 'questions' && rawContent && range?.start && range?.end) {
+      const start = parseInt(range.start);
+      const end = parseInt(range.end);
+      if (!isNaN(start) && !isNaN(end)) {
+        const filtered = (rawContent as QuestionsData).filter(q => q.id >= start && q.id <= end);
+        setFileContent(filtered);
+        onData(filtered as any);
+      }
+    }
+  }, [range, expectedType, rawContent, onData]);
 
   const validateJsonType = (data: any): data is QuestionsData | AnswersData => {
     if (expectedType === 'questions') {
@@ -45,6 +63,7 @@ export function LocalJsonUploader({ label, onData, expectedType }: LocalJsonUplo
       try {
         const data = JSON.parse(event.target?.result as string);
         if (validateJsonType(data)) {
+          setRawContent(data);
           setFileContent(data);
           onData(data as any); // assert as any to support union type
         } else {
@@ -68,7 +87,7 @@ export function LocalJsonUploader({ label, onData, expectedType }: LocalJsonUplo
           <div className="ml-4">
             {question.options.map((option, index) => (
               <div key={index} className="text-sm">
-                {option.label}: {option.text} (Score: {option.rawScore})
+                {option.label}: {option.text} (score: {option.rawScore})
               </div>
             ))}
           </div>
@@ -78,7 +97,7 @@ export function LocalJsonUploader({ label, onData, expectedType }: LocalJsonUplo
       return (fileContent as AnswersData).map((answer, index) => (
         <div key={index} className="p-4 border rounded-md mb-2">
           <p className="text-sm">
-            Question {answer.questionId}: Selected {answer.selectedOption}
+            Question {answer.questionId}: selected {answer.selectedOption}
           </p>
         </div>
       ));
