@@ -21,13 +21,18 @@ export function LocalJsonUploader({ label, onData, expectedType, range }: LocalJ
 
   /*
    * Alters the questions based on the given range. This is not only visual; it modifies the data in-place.
-  */
+   */
   useEffect(() => {
-    if (expectedType === 'questions' && rawContent && range?.start && range?.end) {
-      const start = parseInt(range.start);
-      const end = parseInt(range.end);
+    if (expectedType === 'questions' && rawContent) {
+      const questions = rawContent as QuestionsData;
+      const minId = Math.min(...questions.map(q => q.id));
+      const maxId = Math.max(...questions.map(q => q.id));
+      
+      const start = range?.start ? parseInt(range.start) : minId;
+      const end = range?.end ? parseInt(range.end) : maxId;
+      
       if (!isNaN(start) && !isNaN(end)) {
-        const filtered = (rawContent as QuestionsData).filter(q => q.id >= start && q.id <= end);
+        const filtered = questions.filter(q => q.id >= start && q.id <= end);
         setFileContent(filtered);
         onData(filtered as any);
       }
