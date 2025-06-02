@@ -31,6 +31,16 @@ function App() {
       return;
     }
 
+    if (!normalizationTable.length) {
+      alert('Normalization table is required.');
+      return;
+    }
+
+    if (!age || !sex) {
+      alert('Age and sex are required.');
+      return;
+    }
+
     const start = parseInt(range.start);
     const end = parseInt(range.end);
 
@@ -62,9 +72,26 @@ function App() {
     }
 
     const total = scores.reduce((sum, score) => sum + score, 0);
-    const result = method === 'sum' ? total : total / scores.length;
+    const rawScore = method === 'sum' ? total : total / scores.length;
 
-    alert(`Raw ${method === 'sum' ? 'sum' : 'average'}: ${result.toFixed(2)}`); // for now
+    // for simplicity, just find the exact combination. under different circumstances,
+    // we would try to find the closest match.
+    const ageNum = parseInt(age);
+    const sexLabel = sex.toUpperCase() === 'M' ? 'M' : 'F';
+    const normalizedRow = normalizationTable.find(row => {
+      const rowAge = parseInt(row['Age']);
+      const rowScore = parseInt(row['Raw Score']);
+      return rowAge === ageNum && rowScore === rawScore && row['Sex'] === sexLabel;
+    });
+    console.log("Normalization row:", normalizedRow);
+    
+    if (!normalizedRow) {
+      alert('No exact normalization data found.');
+      return;
+    }
+    
+    const normalizedScore = normalizedRow['Normalized Score'];
+    alert(`Normalized score: ${normalizedScore}`); // for now
   };
 
   return (
