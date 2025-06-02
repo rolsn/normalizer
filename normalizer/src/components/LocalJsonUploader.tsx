@@ -103,7 +103,7 @@ export function LocalJsonUploader({ label, onData, expectedType }: LocalJsonUplo
         <div className="text-red-500 text-sm">{error}</div>
       )}
       {fileName && !error && (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 max-h-64 overflow-y-auto">
           {renderContent()}
         </div>
       )}
