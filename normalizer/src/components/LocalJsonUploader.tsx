@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { Question, Answer, QuestionsData, AnswersData } from '../types';
+import type { QuestionsData, AnswersData } from '../types';
 
 type LocalJsonUploaderProps = {
   label?: string;

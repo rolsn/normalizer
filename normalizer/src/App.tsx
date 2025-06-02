@@ -4,7 +4,7 @@ import { LocalJsonUploader } from './components/LocalJsonUploader'
 import { CSVFileUploader } from './components/CSVFileUploader'
 import { SubscaleConfiguration } from './components/SubscaleConfiguration'
 import { UserProfile } from './components/UserProfile'
-import type { QuestionsData, AnswersData, Question } from './types'
+import type { QuestionsData, AnswersData } from './types'
 
 function App() {
   const [range, setRange] = useState({ start: '', end: '' });
