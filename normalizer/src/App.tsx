@@ -4,7 +4,7 @@ import { LocalJsonUploader } from './components/LocalJsonUploader'
 import { CSVFileUploader } from './components/CSVFileUploader'
 import { SubscaleConfiguration } from './components/SubscaleConfiguration'
 import { UserProfile } from './components/UserProfile'
-import type { QuestionsData, AnswersData } from './types'
+import type { QuestionsData, AnswersData, Question } from './types'
 
 function App() {
   const [range, setRange] = useState({ start: '', end: '' });
@@ -16,13 +16,11 @@ function App() {
   const [answers, setAnswers] = useState<AnswersData | null>(null);
 
   const handleRangeChange = (field: 'start' | 'end', value: string) => {
-    // Only allow integers
     const intValue = value === '' ? '' : Math.floor(Number(value)).toString();
     setRange(prev => ({ ...prev, [field]: intValue }));
   };
 
   const handleAgeChange = (value: string) => {
-    // Only allow integers
     const intValue = value === '' ? '' : Math.floor(Number(value)).toString();
     setAge(intValue);
   };
@@ -45,6 +43,28 @@ function App() {
       alert('Start value must be less than or equal to end value');
       return;
     }
+
+    // calculate raw scores for each question in the given range.
+    const scores = questions
+      .filter(q => q.id >= start && q.id <= end)
+      .map(question => {
+        const answer = answers.find(a => a.questionId === question.id);
+        if (!answer) return null;
+        
+        const option = question.options.find(opt => opt.label === answer.selectedOption);
+        return option?.rawScore ?? null;
+      })
+      .filter((score): score is number => score !== null);
+
+    if (scores.length === 0) {
+      alert('No scores found in the selected range.');
+      return;
+    }
+
+    const total = scores.reduce((sum, score) => sum + score, 0);
+    const result = method === 'sum' ? total : total / scores.length;
+
+    alert(`Raw ${method === 'sum' ? 'sum' : 'average'}: ${result.toFixed(2)}`); // for now
   };
 
   return (
