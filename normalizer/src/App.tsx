@@ -4,6 +4,7 @@ import { LocalJsonUploader } from './components/LocalJsonUploader'
 import { CSVFileUploader } from './components/CSVFileUploader'
 import { SubscaleConfiguration } from './components/SubscaleConfiguration'
 import { UserProfile } from './components/UserProfile'
+import type { QuestionsData, AnswersData } from './types'
 
 function App() {
   const [range, setRange] = useState({ start: '', end: '' });
@@ -11,8 +12,8 @@ function App() {
   const [age, setAge] = useState('');
   const [sex, setSex] = useState<string | undefined>(undefined);
   const [normalizationTable, setNormalizationTable] = useState<any[]>([]);
-  const [questions, setQuestions] = useState<any>(null);
-  const [answers, setAnswers] = useState<any>(null);
+  const [questions, setQuestions] = useState<QuestionsData | null>(null);
+  const [answers, setAnswers] = useState<AnswersData | null>(null);
 
   const handleRangeChange = (field: 'start' | 'end', value: string) => {
     // Only allow integers
@@ -66,7 +67,10 @@ function App() {
             Questions
           </p>
           <div className="flex-1 min-h-0">
-            <LocalJsonUploader onData={setQuestions} />
+            <LocalJsonUploader 
+              expectedType="questions"
+              onData={setQuestions} 
+            />
           </div>
         </div>
         <div className="border border-gray-300 w-full md:w-1/2 h-[400px] p-4 flex flex-col">
@@ -74,7 +78,10 @@ function App() {
             Answers
           </p>
           <div className="flex-1 min-h-0">
-            <LocalJsonUploader onData={setAnswers} />
+            <LocalJsonUploader 
+              expectedType="answers"
+              onData={setAnswers} 
+            />
           </div>
         </div>
       </div>
