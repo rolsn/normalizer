@@ -42,7 +42,7 @@ export function LocalJsonUploader({ label, onData }: LocalJsonUploaderProps) {
       {fileName && (
         <div className="flex flex-col gap-2">
           {fileContent && (
-            <pre className="p-2 rounded text-sm overflow-auto max-h-48">
+            <pre className="p-2 rounded text-sm overflow-auto max-h-64 text-left">
               {JSON.stringify(fileContent, null, 2)}
             </pre>
           )}
