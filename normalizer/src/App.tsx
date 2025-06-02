@@ -41,16 +41,14 @@ function App() {
       return;
     }
 
-    const start = parseInt(range.start);
-    const end = parseInt(range.end);
-
-    if (isNaN(start) || isNaN(end)) {
-      alert('Please enter valid start and end values');
-      return;
-    }
+    // use full range if values are empty
+    const minId = Math.min(...questions.map(q => q.id));
+    const maxId = Math.max(...questions.map(q => q.id));
+    const start = range.start ? parseInt(range.start) : minId;
+    const end = range.end ? parseInt(range.end) : maxId;
 
     if (start > end) {
-      alert('Start value must be less than or equal to end value');
+      alert('Start value must be less than or equal to end value.');
       return;
     }
 

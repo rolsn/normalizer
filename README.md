@@ -1,6 +1,6 @@
 # Normalizer
 
-This is a small React app that allows researchers to configure and apply subscales for normalization of survey answers.
+This is a small React app that allows researchers to configure and apply subscales for normalization of survey answers with a fully responsive mobile layout.
 
 # Running
 
