@@ -91,7 +91,7 @@ function App() {
     }
     
     const normalizedScore = normalizedRow['Normalized Score'];
-    alert(`Normalized score: ${normalizedScore}`); // for now
+    alert(`Normalized score: ${normalizedScore} (raw score: ${rawScore})`); // for now
   };
 
   return (
